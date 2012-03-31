@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[零與壹的世界]]></title>
-  <link href="http://ijam.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: iOS | 零與壹的世界]]></title>
+  <link href="http://ijam.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://ijam.github.com/"/>
   <updated>2012-04-01T02:06:23+08:00</updated>
   <id>http://ijam.github.com/</id>
@@ -58,24 +58,6 @@ UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotifica
 <p>基本上，這樣就可以接收來自server的推播了，local端若想玩玩的話，可以試試<a href="https://github.com/stefanhafeneger/PushMeBaby">PushMeBaby</a>這套application。</p>
 
 <p>參考來源：<a href="http://goo.gl/aQpwo">官方</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[fixed] Could not find rake-0.9.2 in any of the sources Run 'bundle install' to install]]></title>
-    <link href="http://ijam.github.com/blog/2012/03/12/solved-could-not-find-rake-0-dot-9-2-in-any-of-the-sources-run-bundle-install-to-install/"/>
-    <updated>2012-03-12T23:00:00+08:00</updated>
-    <id>http://ijam.github.com/blog/2012/03/12/solved-could-not-find-rake-0-dot-9-2-in-any-of-the-sources-run-bundle-install-to-install</id>
-    <content type="html"><![CDATA[<p>When you key in &#8216;rake install&#8217;, then get this error:</p>
-
-<pre><code>rake aborted!
-You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. Using bundle exec may solve this.
-</code></pre>
-
-<p>The Solution:</p>
-
-<pre><code>add gem 'rake', '0.9.2.2' in the Gemfile Document.
-</code></pre>
 ]]></content>
   </entry>
   
