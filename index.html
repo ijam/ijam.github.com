@@ -9,7 +9,7 @@
   <meta name="author" content="ijam">
 
   
-  <meta name="description" content="推播服務在APP中是經常會使用到的功能，利用推播可以很容易的通知你的APP使用者某些訊息，如：APP有更新啥新玩意兒，由於可以自定sound或badge等的出現，可以增加曝光度、吸引使用者目光，在使用者ㄧ時手癢情況下，或許可以多增加些廣告收益(誤)。 好了，首先要先跟APNS註冊推播服務 [[ &hellip;">
+  <meta name="description" content="完成推播註冊後，由server發送payload經由APNs到你的APP時， 主要會有三種狀態來處理你的推播資訊： APP正常運行或背景執行時： 主要都是利用這個method做處理，只是需要經過ㄧ些判斷。 如： - (void)application:(UIApplication *) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/04/ios-jie-shou-tui-bo-de-san-zhong-zhuang-tai/">[iOS] 接收推播的三種狀態</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T16:43:00+08:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>完成推播註冊後，由server發送payload經由APNs到你的APP時，</p>
+
+<p>主要會有三種狀態來處理你的推播資訊：</p>
+
+<h4>APP正常運行或背景執行時：</h4>
+
+<p>主要都是利用這個method做處理，只是需要經過ㄧ些判斷。</p>
+
+<p>如：</p>
+
+<pre><code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+  if (nil == userInfo) {
+    return;
+  }
+
+  NSDictionary *notification = userInfo;
+
+  if (isBackground_) {
+    //由背景執行開啟
+  } else {
+    //正常情況
+  }
+}
+</code></pre>
+
+<h4>APP關閉時：</h4>
+
+<p>此時APP是未開啓狀態，如果先前已有對此APP開啟推播通知，那麼藉由推播通知開啟APP時，就會觸發以下method，你可以利用launchOptions來處理你的推播資訊。</p>
+
+<p>如：</p>
+
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  if (nil != launchOptions) {
+    NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    ...
+  }
+}
+</code></pre>
+
+<p>以上都是需要經由推播通知進入App，如果不理通知再自行進入App則不會發生以上情況。</p>
+
+<p>done..</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -196,6 +275,10 @@ You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. U
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/04/ios-jie-shou-tui-bo-de-san-zhong-zhuang-tai/">[iOS] 接收推播的三種狀態</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/04/01/ios-apple-push-notification-service-apns/">[iOS] Apple Push Notification service(APNs)</a>
