@@ -9,7 +9,7 @@
   <meta name="author" content="ijam">
 
   
-  <meta name="description" content="完成推播註冊後，由server發送payload經由APNs到你的APP時， 主要會有三種狀態來處理你的推播資訊： APP正常運行或背景執行時： 主要都是利用這個method做處理，只是需要經過ㄧ些判斷。 如： - (void)application:(UIApplication *) &hellip;">
+  <meta name="description" content="宣告實體變數(iVar)，由於預設為protected，只能給自己或繼承者存取，若要給外部類別存取的話，則需使用accessor method來產生setter、getter。 @interface Player: NSObject { NSString *name; //宣告實體變數(iVar &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,93 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/11/obj-c-accessor-method/">[Obj-c] Accessor Method</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-11T00:06:00+08:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>宣告實體變數(iVar)，由於預設為protected，只能給自己或繼承者存取，若要給外部類別存取的話，則需使用accessor method來產生setter、getter。</p>
+
+<pre><code>@interface Player: NSObject 
+{
+  NSString *name; //宣告實體變數(iVar)
+}
+
+@property (nonatomic, retain) NSString *name;  //宣告setter、getter
+
+@synthesize name;  //根據property賦予的屬性(copy, retain等)實作setter、getter
+</code></pre>
+
+<p>如此ㄧ來，compiler會自動產生setter、getter：</p>
+
+<pre><code>- (void)setName:(NSString *)theName;  //setter
+- (NSString *)name;   //getter
+</code></pre>
+
+<p>objective-c 2.0後，由於Dot Syntax的關係，[self name]即等於self.name，所以setter、getter傳統寫法為：</p>
+
+<p>//setter</p>
+
+<pre><code>[self setName:@"ijam"];
+</code></pre>
+
+<p>//getter</p>
+
+<pre><code>[self name];
+</code></pre>
+
+<p>加入Dot Syntax後，</p>
+
+<p>//setter</p>
+
+<pre><code>self.name = @"ijam";
+</code></pre>
+
+<p>//getter</p>
+
+<pre><code>NSLog(@"My name is: %@", self.name);
+</code></pre>
+
+<p>而self.name若有assign值的話，則會自動呼叫setter，
+反之，則只呼叫getter，</p>
+
+<p>利用iVar assign值也不會呼叫setter，而是直接賦予iVar值。</p>
+
+<p>另外，也有看過在iVar前/後加上underscore的，然後再利用@synthesize property = iVar來自定accessor method name，這樣作法似乎是為了避免造成iVar與property的混淆，提高程式可讀性。</p>
+
+<p>stackoverflow也有相關討論串，可參考<a href="http://goo.gl/M1dNd">這邊</a>。</p>
+
+<p>至於使用property時機？可參考<a href="http://goo.gl/p0fam">這邊</a>。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -275,6 +362,10 @@ You have already activated rake 0.9.2.2, but your Gemfile requires rake 0.9.2. U
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/obj-c-accessor-method/">[Obj-c] Accessor Method</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/04/04/ios-jie-shou-tui-bo-de-san-zhong-zhuang-tai/">[iOS] 接收推播的三種狀態</a>
