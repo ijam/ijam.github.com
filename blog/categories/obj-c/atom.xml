@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Obj-c | 零與壹的世界]]></title>
   <link href="http://ijam.github.com/blog/categories/obj-c/atom.xml" rel="self"/>
   <link href="http://ijam.github.com/"/>
-  <updated>2012-04-14T14:51:03+08:00</updated>
+  <updated>2012-04-20T00:01:50+08:00</updated>
   <id>http://ijam.github.com/</id>
   <author>
     <name><![CDATA[ijam]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Obj-c] NSSet versus NSArray]]></title>
+    <link href="http://ijam.github.com/blog/2012/04/19/obj-c-nsset-versus-nsarray/"/>
+    <updated>2012-04-19T23:17:00+08:00</updated>
+    <id>http://ijam.github.com/blog/2012/04/19/obj-c-nsset-versus-nsarray</id>
+    <content type="html"><![CDATA[<h4>NSSet：</h4>
+
+<ul>
+<li>未排序的物件集合</li>
+<li>確保物件唯一性</li>
+<li><p>由於使用hash table的機制，所以在取得大量的物件時效能更好</p>
+
+<p>  Performance Information:</p>
+
+<p>  This performance information assumes adequate implementations for the hash method defined for the objects.
+  With a bad hash function, access and edits take linear time.</p>
+
+<ul>
+<li>Accessing an element of a set takes constant time.</li>
+<li>Setting and removing take constant time.</li>
+</ul>
+</li>
+</ul>
+
+
+<h4>NSArray：</h4>
+
+<ul>
+<li>經排序的物件集合</li>
+<li>無唯一性</li>
+<li><p>在寫入或取代資料內容時，效能較好</p>
+
+<p>  Performance Information:</p>
+
+<ul>
+<li>Accessing an element of an array takes constant time.</li>
+<li>Appending to and removing elements from either end take constant time.</li>
+<li>Replacing an element takes constant time.</li>
+<li>Inserting an element into the middle of an array takes linear time.</li>
+</ul>
+</li>
+</ul>
+
+
+<h4>結論：</h4>
+
+<p>搜尋大量的物件時，或是必須確保物件彼此間的唯一性時，使用NSSet;
+普通的存取操作時，搜尋小量物件時，使用NSArray。</p>
+
+<p><a href="http://goo.gl/OVCTF">資料來源</a></p>
+
+<p><a href="http://goo.gl/XFyzo">延伸閱讀</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Obj-c] Accessor Method]]></title>
