@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: iOS - 零與壹的世界</title>
+  <title>[fixed] CorePlot failed to build in XCode4.4 - 零與壹的世界</title>
   <meta name="author" content="ijam">
 
   
-  <meta name="description" content="Category: iOS">
+  <meta name="description" content="升級Xcode4.4後，原本有使用CorePlot的projects，build後竟產生這樣的error clang: error: -Z-reserved-lib-stdc++: 'linker' input unused when '-c' is present Command / &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ijam.github.comblog/categories/ios">
+  <link rel="canonical" href="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -63,49 +63,107 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: iOS</h1>
+    
+      <h1 class="entry-title">[Fixed] CorePlot Failed to Build in XCode4.4</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-06T21:47:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>升級Xcode4.4後，原本有使用CorePlot的projects，build後竟產生這樣的error</p>
 
-  
-  <h2>2012</h2>
+<pre><code>clang: error: -Z-reserved-lib-stdc++: 'linker' input unused when '-c' is present
 
-<article>
-  
-<h1><a href="/blog/2012/04/04/ios-jie-shou-tui-bo-de-san-zhong-zhuang-tai/">[iOS] 接收推播的三種狀態</a></h1>
-<time datetime="2012-04-04T16:43:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>04</span> <span class='year'>2012</span></time>
+Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang failed with exit code 1
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>iOS</a></span>
-</footer>
+<p>原來是因為Xcode4.4將compiler升級到了LLVM 4.0</p>
 
+<h4>解決辦法：</h4>
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2012/04/01/ios-apple-push-notification-service-apns/">[iOS] Apple Push Notification service(APNs)</a></h1>
-<time datetime="2012-04-01T01:50:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>01</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>iOS</a></span>
-</footer>
+<ul>
+<li><p><a href="http://goo.gl/LeMny">安裝新的CorePlot吧QQ</a></p></li>
+<li><p>把compiler換成LLVM GCC</p></li>
+</ul>
 
 
-</article>
+<p><a href="http://goo.gl/xGmdj">參考資料1</a></p>
 
+<p><a href="http://goo.gl/D5fo1">參考資料2</a></p>
+
+<p><a href="http://goo.gl/xlulp">stackoverflow討論</a></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">ijam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-06T21:47:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fixed/'>fixed</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4/" data-via="ijamh" data-counturl="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/19/obj-c-nsset-versus-nsarray/" title="Previous Post: [Obj-c] NSSet versus NSArray">&laquo; [Obj-c] NSSet versus NSArray</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

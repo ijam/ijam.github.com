@@ -4,7 +4,7 @@
   <title><![CDATA[零與壹的世界]]></title>
   <link href="http://ijam.github.com/atom.xml" rel="self"/>
   <link href="http://ijam.github.com/"/>
-  <updated>2012-04-20T00:01:50+08:00</updated>
+  <updated>2012-08-06T22:04:29+08:00</updated>
   <id>http://ijam.github.com/</id>
   <author>
     <name><![CDATA[ijam]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[fixed] CorePlot failed to build in XCode4.4]]></title>
+    <link href="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4/"/>
+    <updated>2012-08-06T21:47:00+08:00</updated>
+    <id>http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4</id>
+    <content type="html"><![CDATA[<p>升級Xcode4.4後，原本有使用CorePlot的projects，build後竟產生這樣的error</p>
+
+<pre><code>clang: error: -Z-reserved-lib-stdc++: 'linker' input unused when '-c' is present
+
+Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang failed with exit code 1
+</code></pre>
+
+<p>原來是因為Xcode4.4將compiler升級到了LLVM 4.0</p>
+
+<h4>解決辦法：</h4>
+
+<ul>
+<li><p><a href="http://goo.gl/LeMny">安裝新的CorePlot吧QQ</a></p></li>
+<li><p>把compiler換成LLVM GCC</p></li>
+</ul>
+
+
+<p><a href="http://goo.gl/xGmdj">參考資料1</a></p>
+
+<p><a href="http://goo.gl/D5fo1">參考資料2</a></p>
+
+<p><a href="http://goo.gl/xlulp">stackoverflow討論</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Obj-c] NSSet versus NSArray]]></title>
