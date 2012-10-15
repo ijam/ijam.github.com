@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[fixed] CorePlot failed to build in XCode4.4 - 零與壹的世界</title>
+  <title>[iOS] 區別ios版本 - 零與壹的世界</title>
   <meta name="author" content="ijam">
 
   
-  <meta name="description" content="升級Xcode4.4後，原本有使用CorePlot的projects，build後竟產生這樣的error clang: error: -Z-reserved-lib-stdc++: 'linker' input unused when '-c' is present Command / &hellip;">
+  <meta name="description" content="想在新版iOS SDK上使用新的功能又不能影響到原有的iOS舊版本程式架構，
+常常需要針對不同的iOS版本做對應的處理。 compile-time conditional : 在compile時，compiler會根據不同的設定值來確保其順利找到對應的code。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4">
+  <link rel="canonical" href="http://ijam.github.com/blog/2012/10/15/ios-qu-bie-iosban-ben">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -69,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">[Fixed] CorePlot Failed to Build in XCode4.4</h1>
+      <h1 class="entry-title">[iOS] 區別ios版本</h1>
     
     
       <p class="meta">
@@ -85,35 +86,66 @@
   
 
 
-<time datetime="2012-08-06T21:47:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2012</time>
+<time datetime="2012-10-15T22:36:00+08:00" pubdate data-updated="true">Oct 15<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>升級Xcode4.4後，原本有使用CorePlot的projects，build後竟產生這樣的error</p>
-
-<pre><code>clang: error: -Z-reserved-lib-stdc++: 'linker' input unused when '-c' is present
-
-Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang failed with exit code 1
-</code></pre>
-
-<p>原來是因為Xcode4.4將compiler升級到了LLVM 4.0</p>
-
-<h4>解決辦法：</h4>
+<div class="entry-content"><p>想在新版iOS SDK上使用新的功能又不能影響到原有的iOS舊版本程式架構，
+常常需要針對不同的iOS版本做對應的處理。</p>
 
 <ul>
-<li><p><a href="http://goo.gl/LeMny">安裝新的CorePlot吧QQ</a></p></li>
-<li><p>把compiler換成LLVM GCC</p></li>
+<li><p>compile-time conditional : 在compile時，compiler會根據不同的設定值來確保其順利找到對應的code。</p>
+
+<ul>
+<li><p>__IPHONE_OS_VERSION_MAX_ALLOWED : 根據Base SDK的設定。</p></li>
+<li><p>__IPHONE_OS_VERSION_MIN_REQUIRED :根據iPhone OS Deployment Target的設定。</p></li>
+</ul>
+</li>
+<li><p>run-time check : 可以利用 [[UIDevice currentDevice] systemVersion]來判斷使用者的iOS版本。</p></li>
 </ul>
 
 
-<p><a href="http://goo.gl/xGmdj">參考資料1</a></p>
+<h5>in project settings :</h5>
 
-<p><a href="http://goo.gl/D5fo1">參考資料2</a></p>
+<ul>
+<li>Base SDK : 你想要使用的功能，其iOS最高版本。(通常是設為最新的)</li>
+<li>iPhone OS Deployment Target : 還支援的iOS最低版本。</li>
+</ul>
 
-<p><a href="http://goo.gl/xlulp">stackoverflow討論</a></p>
+
+<h5>各iOS版本的對應 :</h5>
+
+<pre><code>#define __IPHONE_2_0     20000
+#define __IPHONE_2_1     20100
+#define __IPHONE_2_2     20200
+#define __IPHONE_3_0     30000
+#define __IPHONE_3_1     30100
+#define __IPHONE_3_2     30200
+#define __IPHONE_4_0     40000
+#define __IPHONE_4_1     40100
+#define __IPHONE_4_2     40200
+#define __IPHONE_4_3     40300
+#define __IPHONE_5_0     50000
+#define __IPHONE_5_1     50100
+#define __IPHONE_6_0     60000
+#define __IPHONE_NA      99999  /* not available */
+</code></pre>
+
+<h5>example :</h5>
+
+<pre><code>#if __IPHONE_OS_VERSION_MAX_ALLOWED &gt;= 60000
+  if (6.0 &lt;= [[[UIDevice currentDevice] systemVersion] floatValue]) {
+    // iOS 6.0 後的新功能
+  }
+#else
+  if (6.0 &gt; [[[UIDevice currentDevice] systemVersion] floatValue]) {
+    // iOS 6.0 以前的功能
+  }
+#endif
+</code></pre>
 </div>
 
 
@@ -136,12 +168,12 @@ Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoo
   
 
 
-<time datetime="2012-08-06T21:47:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2012</time>
+<time datetime="2012-10-15T22:36:00+08:00" pubdate data-updated="true">Oct 15<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/fixed/'>fixed</a>
+    <a class='category' href='/blog/categories/ios/'>iOS</a>
   
 </span>
 
@@ -150,7 +182,7 @@ Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoo
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4/" data-via="ijamh" data-counturl="http://ijam.github.com/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ijam.github.com/blog/2012/10/15/ios-qu-bie-iosban-ben/" data-via="ijamh" data-counturl="http://ijam.github.com/blog/2012/10/15/ios-qu-bie-iosban-ben/" >Tweet</a>
   
   
   
@@ -161,10 +193,8 @@ Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoo
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/19/obj-c-nsset-versus-nsarray/" title="Previous Post: [Obj-c] NSSet versus NSArray">&laquo; [Obj-c] NSSet versus NSArray</a>
+        <a class="basic-alignment left" href="/blog/2012/08/06/fixed-coreplot-failed-to-build-in-xcode4-dot-4/" title="Previous Post: [fixed] CorePlot failed to build in XCode4.4">&laquo; [fixed] CorePlot failed to build in XCode4.4</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/10/15/ios-qu-bie-iosban-ben/" title="Next Post: [iOS] 區別ios版本">[iOS] 區別ios版本 &raquo;</a>
       
     </p>
   </footer>
