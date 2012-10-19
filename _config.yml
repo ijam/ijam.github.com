@@ -7,7 +7,7 @@ title: 零與壹的世界
 subtitle: 真真假假真真
 author: ijam
 simple_search: http://google.com/search
-description: test
+description: 
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -17,9 +17,9 @@ date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
-subscribe_email: ijamhh@gmail.com
+subscribe_email:
 # RSS feeds can list your email address if you like
-email: ijamhh@gmail.com
+email:
 
 # ----------------------- #
 #    Jekyll & Plugins     #
